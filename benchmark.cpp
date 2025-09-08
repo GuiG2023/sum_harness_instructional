@@ -23,6 +23,7 @@
 #include <random>
 #include <vector>
 #include <string.h>
+#include <cstring>
 
 #include "sums.h"
 
