@@ -20,7 +20,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 
-fname = "sample_data_3vars.csv"
+fname = "mflops_3vars.csv"
 df = pd.read_csv(fname, comment="#")
 print(df)
 
@@ -36,7 +36,8 @@ code1_time = df[var_names[1]].values.tolist()
 code2_time = df[var_names[2]].values.tolist()
 code3_time = df[var_names[3]].values.tolist()
 
-plt.title("Comparison of 3 Codes")
+plt.figure(figsize=(8,5))
+plt.title("Problem Size vs MFLOP/s")
 
 xlocs = [i for i in range(len(problem_sizes))]
 
@@ -52,18 +53,19 @@ plt.xticks(xlocs, problem_sizes)
 plt.plot(code1_time, "r-o")
 plt.plot(code2_time, "b-x")
 plt.plot(code3_time, "g-^")
+plt.xscale("log", base=2) 
 
 #plt.xscale("log")
 #plt.yscale("log")
 
 plt.xlabel("Problem Sizes")
-plt.ylabel("runtime")
+plt.ylabel("MFLOP/s")
 
 varNames = [var_names[1], var_names[2], var_names[3]]
 plt.legend(varNames, loc="best")
 
 plt.grid(axis='both')
-
+plt.savefig("mflops_vs_N.png", dpi=300)
 plt.show()
 
 # EOF
